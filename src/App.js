@@ -27,12 +27,7 @@ function App() {
   },[])
   return (
     <div className="App">
-       <header>
-         <p>
-           Welcome to the Weight Loss Tracker, {data.user}
-         </p>
-         <p>Your goal is {data.goal} {data.uom}</p>
-       </header>
+       <Header userData={data}/>
     </div>
   );
 }
