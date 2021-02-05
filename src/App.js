@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Card  from "./containers/Card";
+import Goal from "./containers/Goal";
 
 function App() {
   
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
        <Header />
        <Card />
+       <Goal />
     </div>
   );
 }
