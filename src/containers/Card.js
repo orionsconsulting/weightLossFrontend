@@ -10,7 +10,10 @@ class Card extends Component {
   }
 
   async componentDidMount() {
-    const trackingData = await fetch('http://localhost:8000/weighttracker/3');
+    const url = process.env.REACT_APP_DOMAIN+'/weighttracker/3';
+    console.log("url " + url);
+    const trackingData = await fetch(url);
+    console.log(trackingData);
     const trackingJson = await trackingData.json();
     
     if (trackingJson) {

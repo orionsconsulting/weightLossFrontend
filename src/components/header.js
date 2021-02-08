@@ -14,7 +14,6 @@ class Header extends Component {
     const userJson = await user.json();
     
     if (userJson) {
-        console.log(userJson);
       this.setState({
         userData: userJson,
         loading: false,
