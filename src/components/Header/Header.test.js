@@ -4,30 +4,39 @@ import Header from "./header";
 import "../../setupTests";
 
 let useContextMock;
+let wrapper;
+
+beforeAll(() => {
+    global.fetch =  jest.fn();
+  });
 
 beforeEach(() => {
-    useContextMock = React.useContext = jest.fn();
+    
+    wrapper = shallow(<Header />, { disableLifecycleMethods: true });
 });
 
 afterEach(() => {
-    useContextMock.mockReset();
+    wrapper.unmount();
 });
 
 
 describe('The <Header /> component', () => {
+    it("must render a loading span before api call success", () => {
+        expect(wrapper.find("div").exists()).toBeTruthy();
+        expect(wrapper.find("div").text()).toContain("Loading...");
+    }); 
     test("renders", () => {
-       const wrapper = shallow(<Header />);
        expect(wrapper.exists()).toBe(true);
     });
     
-    test("it should render user name", () => {
+    it("it should render user name", () => {
         const spyDidMount = jest.spyOn(Header.prototype, "componentDidMount");
-        const wrapper = shallow(<Header />);
-        useContextMock.mockImplementation(() => {
+
+        fetch.mockImplementation(() => {
             return Promise.resolve({
               status: 200,
               json: () => {
-              return Promise.resolve({
+              return ({
                  userName: "testing mctestface",
                  weight: 200
                });
@@ -37,8 +46,5 @@ describe('The <Header /> component', () => {
         
         const didMount = wrapper.instance().componentDidMount();
         expect(spyDidMount).toHaveBeenCalled();
-
     });
-
-    
 });
