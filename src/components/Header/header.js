@@ -30,12 +30,12 @@ class Header extends Component {
 
     return (
       <div className='row'>
-          <header>
-        <p>
-            Welcome to the Weight Loss Tracker, {userData.user}
-        </p>
-        <p>Your goal is {userData.goal}</p>
-    </header>
+        <header>
+          <p>
+              Welcome to the Weight Loss Tracker, {userData.user}
+          </p>
+          <p>Your goal is {userData.goal}</p>
+        </header>
       </div>
     );
   }

@@ -35,7 +35,7 @@ class Card extends Component {
       <ul>
           {trackingData.map(tracking => (
               <li>
-                  <div>
+                  <div key={tracking.id}>
                     {tracking.date} = {tracking.weight}
                   </div> 
               </li>
