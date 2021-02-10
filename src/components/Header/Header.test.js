@@ -19,8 +19,26 @@ describe('The <Header /> component', () => {
        const wrapper = shallow(<Header />);
        expect(wrapper.exists()).toBe(true);
     });
+    
+    test("it should render user name", () => {
+        const spyDidMount = jest.spyOn(Header.prototype, "componentDidMount");
+        const wrapper = shallow(<Header />);
+        useContextMock.mockImplementation(() => {
+            return Promise.resolve({
+              status: 200,
+              json: () => {
+              return Promise.resolve({
+                 userName: "testing mctestface",
+                 weight: 200
+               });
+             }
+           });
+        });
+        
+        const didMount = wrapper.instance().componentDidMount();
+        expect(spyDidMount).toHaveBeenCalled();
 
-    test("user name is echoed", () => {
-        cont wrapper = shallow(<Header />)
     });
+
+    
 });
